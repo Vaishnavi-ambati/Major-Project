@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Update Account</title>
+</head>
+<body>
+<h1>Update Account</h1>
+
+<form th:action="@{/updateAccount/{id}(id=${workerAttr.workerId})}" th:object="${workerAttr}" method="POST">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" th:field="*{email}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" th:field="*{fullName}" id="name" placeholder="Enter Name">
+  </div>
+  <div class="form-group">
+    <label for="mobile">Mobile Number</label>
+    <input type="text" class="form-control" th:field="*{mobile}" id="mobile" placeholder="Enter Mobile Number">
+  </div>
+  <div class="form-group">
+    <label for="ssn">SSN</label>
+    <input type="text" class="form-control" th:field="*{ssn}" id="ssn" placeholder="Enter SSN">
+  </div>
+  <div class="form-group">					
+	<label> Case Worker Gender </label>
+		<input type="radio" value="M" th:field="*{gender}" />
+		 <label th:for="*{gender}" >Male</label>
+		<input type="radio" value="F" th:field="*{gender}" />
+		 <label th:for="*{gender}" >Female</label>
+	</div>
+	<div class="form-group">
+		<label> Case Worker DOB </label>
+		<input type="date" name="dob" th:field="*{dob}" class="form-control"
+			placeholder="Enter User DOB" />
+	</div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+</body>
+</html>

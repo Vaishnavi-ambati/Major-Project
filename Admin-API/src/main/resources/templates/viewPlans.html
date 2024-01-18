@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>View Plans</title>
+</head>
+<body>
+		<div class = "row">
+			<div class = "col-lg-3">
+				<a th:href = "@{/createPlans}" class = "btn btn-primary btn-sm mb-3"> Add Plan </a>
+			</div>
+		</div>
+		
+		<table class = "table table-striped table-bordered">
+			<thead class = "table-dark">
+				<tr>
+					<th>Id</th>
+					<th> Plan Name</th>
+					<th> Plan Start Date</th>
+					<th> Plan End Date </th>
+					<th> Plan Category </th>
+					<th> Actions </th>
+					<th> Edit </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each = "plan: ${planAttr}">
+					<td th:text = "${plan.planId}"></td>
+					<td th:text = "${plan.planName}"></td>
+					<td th:text = "${plan.planStartDate}"></td>
+					<td th:text = "${plan.planEndDate}"></td>
+					<td th:text = "${plan.planCategory}"></td>
+					<td>
+						<div th:switch="${plan.planActiveSwitch}"> 
+						  <p th:case="'Y'"><a th:href = "@{/updatePlanStatus/{id}/{status}(id=${plan.planId},status=N)}" class = "btn btn-danger">Deactivate</a></p>
+						  <p th:case="'N'"><a th:href = "@{/updatePlanStatus/{id}/{status}(id=${plan.planId},status=Y)}" class = "btn btn-primary">Activate</a></p>
+						</div>
+					</td>
+					<td>
+						<a th:href = "@{/updatePlan/{id}(id=${plan.planId})}" class = "btn btn-primary">Update</a>
+						<!--<a th:href = "@{/updatePlan/{id} (id=${plan.planId})}" class = "btn btn-danger">Delete</a>-->
+					</td>
+				</tr>
+			</tbody>
+		
+		</table>
+</body>
+</html>

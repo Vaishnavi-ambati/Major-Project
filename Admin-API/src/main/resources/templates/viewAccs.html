@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>View Accounts</title>
+</head>
+<body>
+<div class ="container">
+	
+		<div class = "row">
+			<h1> List Accounts </h1>
+		</div>
+	
+		<div class = "row">
+			<div class = "col-lg-3">
+				<a th:href = "@{/createAccount}" class = "btn btn-primary btn-sm mb-3"> Add Account </a>
+			</div>
+		</div>
+		 <p th:if="${accountCreated}" th:text="${msg}" class="text-success"></p>
+	
+	<table class = "table table-striped table-bordered">
+			<thead class = "table-dark">
+				<tr>
+					<th>Id</th>
+					<th> User Full Name</th>
+					<th> User Email</th>
+					<th> User Number </th>
+					<th> User Gender </th>
+					<th> User SSN </th>
+					<th> Actions </th>
+					<th> Edit </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each = "worker: ${workerAttr}">
+					<td th:text = "${worker.workerId}"></td>
+					<td th:text = "${worker.fullName}"></td>
+					<td th:text = "${worker.email}"></td>
+					<td th:text = "${worker.mobile}"></td>
+					<td th:text = "${worker.gender}"></td>
+					<td th:text = "${worker.ssn}"></td>
+					<<td>
+						<div th:switch="${worker.workerActiveSwitch}"> 
+						  <p th:case="'Y'"><a th:href = "@{/updateAccountStatus/{id}/{status}(id=${worker.workerId},status=N)}" class = "btn btn-danger">Deactivate</a></p>
+						  <p th:case="'N'"><a th:href = "@{/updateAccountStatus/{id}/{status}(id=${worker.workerId},status=Y)}" class = "btn btn-primary">Activate</a></p>
+						</div>
+					</td>
+					<td>
+						<a th:href = "@{/updateAccount/{id}(id=${worker.workerId})}" class = "btn btn-primary">Update</a>
+					</td>
+				</tr>
+			</tbody>
+		
+		</table>
+	</div>
+</body>
+</html>

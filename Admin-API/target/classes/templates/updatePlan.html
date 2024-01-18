@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Update Plan</title>
+</head>
+<body>
+
+<h1>Update Plan</h1>
+
+<form th:action="@{/updatePlan/{id}(id=${planAttr.planId})}" th:object="${planAttr}" method="POST">
+
+  <div class="form-group">
+    <label for="planName">Plan Name</label>
+    <input type="text" class="form-control" th:field="*{planName}" id="planName" placeholder="Enter Plan Name">
+  </div>
+
+  <div class="form-group">					
+	<label> Plan Category </label>
+		<input type="radio" value="Food" th:field="*{planCategory}" />
+		 <label th:for="*{planCategory}" >Food</label>
+		<input type="radio" value="Child care" th:field="*{planCategory}" />
+		 <label th:for="*{planCategory}" >Child care</label>
+		 <input type="radio" value="Unemployment" th:field="*{planCategory}" />
+		 <label th:for="*{planCategory}" >Unemployment</label>
+		 <input type="radio" value="Health" th:field="*{planCategory}" />
+		 <label th:for="*{planCategory}" >Health</label>
+	</div>
+	<div class="form-group">
+		<label> Plan Start Date </label>
+		<input type="date" name="planStartDate" th:field="*{planStartDate}" class="form-control"
+			placeholder="Enter Plan Start Date" />
+	</div>
+	
+	<div class="form-group">
+		<label> Plan End Date </label>
+		<input type="date" name="planEndDate" th:field="*{planEndDate}" class="form-control"
+			placeholder="Enter Plan End Date" />
+	</div>
+	
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</body>
+</html>
